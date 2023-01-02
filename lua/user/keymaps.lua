@@ -46,10 +46,11 @@ nmap("<Leader>e", "<CMD>NvimTreeToggle<CR>")
 nmap("<Leader>fe", "<CMD>NvimTreeFindFile<CR>")
 
 -- telescope
-nmap("<Leader>ff", "<CMD>Telescope find_files<CR>")
-nmap("<Leader>ft", "<CMD>Telescope live_grep<CR>")
-nmap("<Leader>fp", "<CMD>Telescope projects<CR>")
-nmap("<Leader>fb", "<CMD>Telescope buffers<CR>")
+nmap("<Leader>sf", "<CMD>Telescope find_files<CR>")
+nmap("<Leader>st", "<CMD>Telescope live_grep<CR>")
+nmap("<Leader>sp", "<CMD>Telescope projects<CR>")
+nmap("<Leader>sb", "<CMD>Telescope buffers<CR>")
+nmap("<Leader>sd", "<CMD>Telescope diagnostics<CR>")
 
 -- helper
 nmap("<Leader>h", "<CMD>noh<CR>")
