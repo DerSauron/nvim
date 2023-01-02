@@ -1,3 +1,4 @@
+vim.opt.clipboard = "unnamed"
 vim.opt.backup = false
 vim.opt.termguicolors = true
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
