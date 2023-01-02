@@ -30,12 +30,16 @@ nmap("<A-k>", "<CMD>m .-2<CR>==")
 xmap("<A-j>", "<CMD>m .+1<CR>==gv")
 xmap("<A-k>", "<CMD>m .-2<CR>==gv")
 
--- Simpler clipboard past
-vmap("p", "\"_dP")
+xmap("p", "\"_dP") -- delete selection and paste
+xmap("y", "\"\"ygv") -- Keep selection after yanking
+
+-- Simpler clipboard access
+xmap("<C-A-d>", "\"+d")
 xmap("<C-A-y>", "\"+ygv")
+xmap("<C-A-p>", "\"_d\"+P")
+nmap("<C-A-d>", "\"+dd")
 nmap("<C-A-y>", "\"+yy")
 nmap("<C-A-p>", "\"+P")
-vmap("<C-A-p>", "\"_d\"+P")
 
 -- commenting
 nmap("<A-/>", "gcc")
