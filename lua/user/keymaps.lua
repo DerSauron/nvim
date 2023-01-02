@@ -19,16 +19,16 @@ nmap("<S-j>", "<CMD>bnext<CR>")
 nmap("<S-k>", "<CMD>CMD>bprivious<CR>")
 nmap("<Leader>q", "<CMD>Bdelete<CR>")
 
--- Keep selecti<CMD>n
-vmap("<", "<gv")
-vmap(">", ">gv")
-vmap("=", "=gv")
+-- Keep selection while indenting in visual mode
+xmap("<", "<gv")
+xmap(">", ">gv")
+xmap("=", "=gv")
 
 -- Move text up and down
 nmap("<A-j>", "<CMD>m .+1<CR>==")
 nmap("<A-k>", "<CMD>m .-2<CR>==")
-vmap("<A-j>", "<CMD>m .+1<CR>==gv")
-vmap("<A-k>", "<CMD>m .-2<CR>==gv")
+xmap("<A-j>", "<CMD>m .+1<CR>==gv")
+xmap("<A-k>", "<CMD>m .-2<CR>==gv")
 
 -- Simpler clipboard past
 vmap("p", "\"_dP")
