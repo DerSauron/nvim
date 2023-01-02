@@ -17,7 +17,7 @@ nmap("<C-Right>", "<CMD>vertical resize -2<CR>")
 -- Buffer navigation
 nmap("<S-j>", "<CMD>bnext<CR>")
 nmap("<S-k>", "<CMD>CMD>bprivious<CR>")
-nmap("<Leader>q", "<CMD>Bdelete<CR>")
+nmap("<Leader>q", "<CMD>Bwipeout<CR>")
 
 -- Keep selection while indenting in visual mode
 xmap("<", "<gv")
