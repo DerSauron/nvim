@@ -1,5 +1,4 @@
 vim.opt.backup = false
-vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
