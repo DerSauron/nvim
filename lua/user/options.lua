@@ -37,14 +37,5 @@ vim.opt.scrolloff = 8                           -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.title = true
 vim.opt.colorcolumn = "120"
-vim.opt.whichwrap:append({
-    ["<"] = true,
-    [">"] = true,
-    ["["] = true,
-    ["]"] = true,
-    ["h"] = true,
-    ["l"] = true}
-)
-vim.opt.iskeyword:append({
-    ["-"] = true}
-)
+vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.iskeyword:append("-")
