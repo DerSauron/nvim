@@ -52,7 +52,7 @@ return packer.startup(function(use)
     use { "nvim-lua/plenary.nvim" }
     use { "nvim-lua/popup.nvim" }
 
-    -- Auto installer
+    -- LSP Auto installer
     use { "williamboman/mason.nvim" }
     use { "williamboman/mason-lspconfig.nvim" }
 
@@ -62,6 +62,7 @@ return packer.startup(function(use)
     use { "RRethy/vim-illuminate" }
     use { "ray-x/lsp_signature.nvim" }
     use { "glepnir/lspsaga.nvim" }
+    use { "j-hui/fidget.nvim" }
 
     -- Completion
     use { "hrsh7th/nvim-cmp" }
@@ -77,15 +78,16 @@ return packer.startup(function(use)
     use { "rafamadriz/friendly-snippets" }
 
     -- Syntax/Treesitter
-    use { "nvim-treesitter/nvim-treesitter" }
-    use { "JoosepAlviste/nvim-ts-context-commentstring" }
-    use { "p00f/nvim-ts-rainbow" }
+    use { "nvim-treesitter/nvim-treesitter", run = function()
+        pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end }
+    use { "nvim-treesitter/nvim-treesitter-textobjects", after = 'nvim-treesitter' }
     use { "nvim-treesitter/playground" }
-    use { "windwp/nvim-ts-autotag" }
-    use { "nvim-treesitter/nvim-treesitter-textobjects" }
+    use { "p00f/nvim-ts-rainbow" }
 
     -- Fuzzy Finder/Telescope
     use { "nvim-telescope/telescope.nvim" }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
     -- Project
     use { "ahmedkhalf/project.nvim" }
@@ -117,6 +119,7 @@ return packer.startup(function(use)
 
     -- Editing Support
     use { "windwp/nvim-autopairs" }
+    use { "tpope/vim-sleuth" }
 
     -- Indent
     use { "lukas-reineke/indent-blankline.nvim" }
