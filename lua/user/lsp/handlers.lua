@@ -91,9 +91,9 @@ local function lsp_keymaps(client, bufnr)
     -- set_keymap(bufnr, "n", "]d", "<CMD>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", opts)
     -- set_keymap(bufnr, "n", "gl", "<CMD>lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })<CR>", opts)
 
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
         set_keymap(bufnr, "n", "<C-f>", "<CMD>lua vim.lsp.buf.format({async = true})<CR>", opts)
-    else
+    elseif client.server_capabilities.documentRangeFormattingProvider then
         set_keymap(bufnr, "n", "<C-f>", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
@@ -128,7 +128,7 @@ end
 
 local function lsp_highlight_document(client)
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_exec([[
             augroup lsp_document_highlight
             autocmd! * <buffer>
