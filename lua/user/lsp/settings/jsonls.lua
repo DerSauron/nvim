@@ -1,13 +1,13 @@
 return {
-  init_options = {
-    provideFormatter = false,
-  },
-  settings = {
-    json = {
+    init_options = {
+        provideFormatter = false,
     },
-  },
-  setup = {
-    commands = {
+    settings = {
+        json = {
+        },
     },
-  },
+    setup = {
+        commands = {
+        },
+    },
 }
