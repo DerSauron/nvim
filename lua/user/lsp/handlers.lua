@@ -86,29 +86,43 @@ local function lsp_keymaps(client, bufnr)
     -- set_keymap(bufnr, "n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", opts)
     -- set_keymap(bufnr, "n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>", opts)
     -- set_keymap(bufnr, "n", "<leader>ca", "<CMD>lua vim.lsp.buf.code_action()<CR>", opts)
-    set_keymap(bufnr, "n", "[d", "<CMD>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", opts)
-    set_keymap(bufnr, "n", "]d", "<CMD>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", opts)
+    -- set_keymap(bufnr, "n", "[d", "<CMD>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", opts)
+    -- set_keymap(bufnr, "n", "]d", "<CMD>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", opts)
     -- set_keymap(bufnr, "n", "gl", "<CMD>lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })<CR>", opts)
 
     if client.resolved_capabilities.document_formatting then
-        set_keymap(bufnr, "n", "<C-f>", "<CMD>lua vim.lsp.buf.formatting()<CR>", opts)
+        set_keymap(bufnr, "n", "<C-f>", "<CMD>lua vim.lsp.buf.format({async = true})<CR>", opts)
     else
         set_keymap(bufnr, "n", "<C-f>", "<CMD>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
-    set_keymap(bufnr, "n", "gh", "<CMD>lua require('lspsaga.provider').lsp_finder()<CR>", opts)
-    set_keymap(bufnr, "n", "<Leader>ca", "<CMD>lua require('lspsaga.codeaction').code_action()<CR>", opts)
-    set_keymap(bufnr, "x", "<Loader>ca", ":<C-u>lua require('lspsaga.codeaction').range_code_action()<CR>", opts)
-    set_keymap(bufnr, "n", "K", "<CMD>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-    set_keymap(bufnr, "n", "<C-f>", "<CMD>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
-    set_keymap(bufnr, "n", "<C-b>", "<CMD>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts)
-    set_keymap(bufnr, "n", "<C-k>", "<CMD>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
-    set_keymap(bufnr, "n", "<Leader>rn", "<CMD>lua require('lspsaga.rename').rename()<CR>", opts)
-    set_keymap(bufnr, "n", "gp", "<CMD>lua require('lspsaga.provider').preview_definition()<CR>", opts)
-    set_keymap(bufnr, "n", "<Leader>cl", "<CMD>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>", opts)
-    set_keymap(bufnr, "n", "<Leader>cc", "<CMD>lua require('lspsaga.diagnostic').show_cursor_diagnostic()<CR>", opts)
-    -- set_keymap(bufnr, "n", "[d", "<CMD>lua require('lspsaga.diagnostic').navigate('prev')<CR>", opts)
-    -- set_keymap(bufnr, "n", "]d", "<CMD>lua require('lspsaga.diagnostic').navigate('next')<CR>", opts)end
+    -- Lsp finder find the symbol definition implement reference
+    -- when you use action in finder like open vsplit then you can
+    -- use <C-t> to jump back
+    set_keymap(bufnr, "n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+
+    -- Code action
+    set_keymap(bufnr, "n", "<leader>ca", "<CMD>Lspsaga code_action<CR>", { silent = true })
+    set_keymap(bufnr, "v", "<leader>ca", "<CMD><C-U>Lspsaga range_code_action<CR>", { silent = true })
+
+    -- Rename
+    set_keymap(bufnr, "n", "<Leader>rn", "<CMD>Lspsaga rename<CR>", { silent = true })
+
+    -- Show line diagnostics
+    -- set_keymap(bufnr, "n", "<leader>cd", "<CMD>Lspsaga show_line_diagnostics<CR>", { silent = true })
+
+    -- Show cursor diagnostic
+    set_keymap(bufnr, "n", "<leader>cd", "<CMD>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
+
+    -- Diagnsotic jump can use `<c-o>` to jump back
+    set_keymap(bufnr, "n", "[d", "<CMD>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+    set_keymap(bufnr, "n", "]d", "<CMD>Lspsaga diagnostic_jump_next<CR>", { silent = true })
+
+    -- Outline
+    set_keymap(bufnr, "n","<leader>o", "<CMD>LSoutlineToggle<CR>",{ silent = true })
+
+    -- Hover Doc
+    set_keymap(bufnr, "n", "K", "<CMD>Lspsaga hover_doc<CR>", { silent = true })
 end
 
 local function lsp_highlight_document(client)
