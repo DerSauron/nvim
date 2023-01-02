@@ -72,29 +72,27 @@ local hl_str = function(str, hl)
     return "%#" .. hl .. "#" .. str .. "%*"
 end
 
-local mode_color = {
-    n = blue,
-    i = orange,
-    v = "#b668cd",
-    [""] = "#b668cd",
-    V = "#b668cd",
-    -- c = '#B5CEA8',
-    -- c = '#D7BA7D',
-    c = "#46a6b2",
-    no = "#D16D9E",
-    s = green,
-    S = orange,
-    [""] = orange,
-    ic = red,
-    R = "#D16D9E",
-    Rv = red,
-    cv = blue,
-    ce = blue,
-    r = red,
-    rm = "#46a6b2",
-    ["r?"] = "#46a6b2",
-    ["!"] = "#46a6b2",
-    t = red,
+local mode_map = {
+    n = { blue, "NORMAL" },
+    i = { orange, "INSERT" },
+    v = { "#b668cd", "VISUAL" },
+    [""] = { "#b668cd", "" },
+    V = { "#b668cd", "" },
+    c = { "#46a6b2", "COMMAND" },
+    no = { "#D16D9E", "" },
+    s = { green, "" },
+    S = { orange, "" },
+    [""] = { orange, "" },
+    ic = { red, "" },
+    R = { "#D16D9E", "" },
+    Rv = { red, "" },
+    cv = { blue, "" },
+    ce = { blue, "" },
+    r = { red, "" },
+    rm = { "#46a6b2", "" },
+    ["r?"] = { "#46a6b2", "" },
+    ["!"] = { "#46a6b2", "" },
+    t = { red, "TERMINAL" },
 }
 
 local left_pad = {
@@ -141,12 +139,12 @@ local mode = {
     -- mode component
     function()
         -- return "▊"
-        return " "
+        return " " .. mode_map[vim.fn.mode()][2]
         -- return "  "
     end,
     color = function()
         -- auto change color according to neovims mode
-        return { fg = mode_color[vim.fn.mode()], bg = gray }
+        return { fg = mode_map[vim.fn.mode()][1], bg = gray }
     end,
     padding = 0,
 }
